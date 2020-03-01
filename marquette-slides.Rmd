@@ -1,0 +1,146 @@
+---
+title: "Intro to R"
+author: "Emily Bovee, PhD & Joshua Rosenberg, PhD"
+institute: "Marquette University and University of Tennessee, Knoxville"
+date: "`r Sys.Date()`"
+output:
+ xaringan::moon_reader:
+    css: [default, metropolis, metropolis-fonts, custom.css]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(knitr)
+library(tidyverse)
+```
+
+# Who am I?
+
+.pull-left[
+* Dr. Emily Bovee
+* Director of Educational Development and Assessment: Marquette University School of Dentistry
+* Cat mom
+* Primary areas of interest
+  * Understanding student motivation in higher education and professional education
+  * Data science education 
+]
+
+```{r, out.width = "350px", echo = FALSE, fig.align = "center"}
+include_graphics("img/ebv.jpg")
+```
+
+
+---
+
+class: inverse, center, middle
+
+# Agenda
+
+---
+
+# Agenda
+
+1. Why learn R?
+1. Getting started with R Studio
+1. Loading data
+1. Processing data
+1. Modeling data 
+1. Learning and doing more with R
+1. Questions
+
+---
+
+
+---
+
+# Packages
+
+"Packages" are shareable collections of R code that provide functions (i.e., a command to perform a specific task), data and documentation,. Packages increase the functionality of R by improving and expanding on base R (basic R functions). 
+
+### Installing and Loading Packages
+
+To download a package, you must call `install.packages()`:
+
+```{r, eval = FALSE}
+install.packages("dplyr")
+```
+
+You can also navigate to the Packages pane, and then click "Install", which will work the same as the line of code above. This is a way to install a package using code or part of the R Studio interface. 
+
+Usually, writing code is a bit quicker, but using the interface can be very useful and complimentary to use of code. 
+
+---
+
+# Using packages
+
+*After* the package is installed, it must be loaded into your R Studio session using `library()`:
+
+```{r}
+library(dplyr)
+```
+
+We only have to install a package once, but to use it, we have to load it each time we start a new R session.
+
+> A package is a like a book, a library is like a library; you use library() to check a package out of the library
+> - Hadley Wickham, Chief Scientist, R Studio
+---
+
+# Vignettes
+
+Vignettes are long-form documentation (and tutorials) that can provide a helpful introduction to a package.
+
+Run `vignette()` in order to view *all* of the vignettes available for a package:
+
+```{r, eval = FALSE}
+vignette(package = "dplyr")
+```
+
+Then, you can load a specific vignette.
+
+```{r, eval = FALSE}
+vignette("dplyr", package = "dplyr")
+```
+
+These are also available through CRAN (i.e., https://cran.r-project.org/web/packages/dplyr/index.html)
+---
+
+# Using a specific function
+
+If you know the specific function that you want to look up, you can run this in the R Studio console:
+
+```{r, eval = FALSE}
+?dplyr::filter
+```
+
+Once you know what you want to do with the function, you can run it in your code:
+
+```{r}
+dat <- # example data frame
+  tibble(letter = c("A", "A", "A", "B", "B"),
+         number = c(1L, 2L, 3L, 4L, 5L))
+filter(dat, letter == "A")
+```
+
+---
+
+
+
+
+
+
+
+
+
+
+---
+
+class: center, middle
+
+# Thanks!
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
