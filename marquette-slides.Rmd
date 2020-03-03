@@ -45,8 +45,8 @@ class: inverse, center, middle
 
 # Agenda
 
-1. Why learn R?
-1. Getting started with R Studio
+1. Getting Started with RStudio
+1. Packages
 1. Loading data
 1. Processing data
 1. Modeling data 
@@ -56,11 +56,57 @@ class: inverse, center, middle
 ---
 
 
+class: inverse, center, middle
+
+# Section 1: Getting Started with RStudio
+
+---
+
+# Why learn R?
+
+* It is capable of carrying out basic and complex statistical analyses
+* It is able to work with data small (*n* = 30!) and large (*n* = 100,000+) efficiently
+* It is a programming language and so is quite flexible
+* There is a great, inclusive community of users and developers (and teachers)
+* It is cross-platform, open-source, and freely-available
+
+---
+
+# Where to begin
+
+* R is the engine
+
+* RStudio is the steering wheel & the gas pedal
+
+* Can't get anywhere without the engine, but we never interact with the engine directly
+
+* R = language ; RStudio = Integrated Development Environment (IDE)
+
+---
+# What's what in RStudio
+
+< Visualization of what goes where
+< something like this http://www.sthda.com/english/wiki/r-basics-quick-and-easy
+
+---
+class: inverse, center, middle
+
+# Section 2: Packages
+
 ---
 
 # Packages
 
 "Packages" are shareable collections of R code that provide functions (i.e., a command to perform a specific task), data and documentation,. Packages increase the functionality of R by improving and expanding on base R (basic R functions). 
+
+---
+
+# See what packages you have
+```{r, out.width = "350px", echo = FALSE, fig.align = "center"}
+include_graphics("pkg_example_screenshot.jpg")
+```
+
+---
 
 ### Installing and Loading Packages
 
@@ -72,6 +118,9 @@ install.packages("tidyverse")
 
 You can also navigate to the Packages pane, and then click "Install", which will work the same as the line of code above. This is a way to install a package using code or part of the R Studio interface. 
 
+```{r, out.width = "350px", echo = FALSE, fig.align = "center"}
+include_graphics("install_pkgs.jpg")
+```
 Usually, writing code is a bit quicker, but using the interface can be very useful and complimentary to use of code. 
 
 ---
@@ -88,7 +137,52 @@ We only have to install a package once, but to use it, we have to load it each t
 
 > A package is a like a book, a library is like a library; you use library() to check a package out of the library
 > - Hadley Wickham, Chief Scientist, R Studio
+
+
 ---
+class: inverse, center, middle
+
+# Section 3: Loading Data
+
+---
+
+
+
+---
+class: inverse, center, middle
+
+# Section 4: Processing Data
+
+---
+
+#Task: Variable Renaming
+
+#Task: Mutating
+
+#Task 
+
+
+
+---
+class: inverse, center, middle
+
+# Section 5: Modeling Data
+
+---
+
+########
+########
+########
+########
+
+##########CONSTRUCTION ZONE
+
+########
+########
+########
+########
+
+##########Maybe delete this - decide if Vignettes & Functions are Essential right now
 
 # Vignettes
 
@@ -141,6 +235,11 @@ filter(dat, letter == "A")
 
 class: center, middle
 
-# Thanks!
+# Thanks! 
+
+Contact me: emily.bovee@marquette.edu 
+Twitter: @ebovee09
+
+Contact Dr. Joshua Rosenberg: @jrose
 
 Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).

@@ -4,7 +4,7 @@
     <title>Intro to R</title>
     <meta charset="utf-8" />
     <meta name="author" content="Emily Bovee, PhD &amp; Joshua Rosenberg, PhD" />
-    <meta name="date" content="2020-02-29" />
+    <meta name="date" content="2020-03-03" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
@@ -17,7 +17,7 @@ class: center, middle, inverse, title-slide
 # Intro to R
 ### Emily Bovee, PhD &amp; Joshua Rosenberg, PhD
 ### Marquette University and University of Tennessee, Knoxville
-### 2020-02-29
+### 2020-03-03
 
 ---
 
@@ -48,8 +48,7 @@ class: inverse, center, middle
 
 # Agenda
 
-1. Why learn R?
-1. Getting started with R Studio
+1. Getting Started with Packages
 1. Loading data
 1. Processing data
 1. Modeling data 
@@ -57,7 +56,9 @@ class: inverse, center, middle
 1. Questions
 
 ---
+class: inverse, center, middle
 
+# Section 1: Getting Started with Packages
 
 ---
 
@@ -65,17 +66,25 @@ class: inverse, center, middle
 
 "Packages" are shareable collections of R code that provide functions (i.e., a command to perform a specific task), data and documentation,. Packages increase the functionality of R by improving and expanding on base R (basic R functions). 
 
+---
+
+# See what packages you have
+&lt;img src="pkg_example_screenshot.jpg" width="350px" style="display: block; margin: auto;" /&gt;
+
+---
+
 ### Installing and Loading Packages
 
 To download a package, you must call `install.packages()`:
 
 
 ```r
-install.packages("dplyr")
+install.packages("tidyverse")
 ```
 
 You can also navigate to the Packages pane, and then click "Install", which will work the same as the line of code above. This is a way to install a package using code or part of the R Studio interface. 
 
+&lt;img src="install_pkgs.jpg" width="350px" style="display: block; margin: auto;" /&gt;
 Usually, writing code is a bit quicker, but using the interface can be very useful and complimentary to use of code. 
 
 ---
@@ -86,14 +95,28 @@ Usually, writing code is a bit quicker, but using the interface can be very usef
 
 
 ```r
-library(dplyr)
+library(tidyverse)
 ```
 
 We only have to install a package once, but to use it, we have to load it each time we start a new R session.
 
 &gt; A package is a like a book, a library is like a library; you use library() to check a package out of the library
 &gt; - Hadley Wickham, Chief Scientist, R Studio
----
+
+
+########
+########
+########
+########
+
+##########CONSTRUCTION ZONE
+
+########
+########
+########
+########
+
+##########Maybe delete this - decide if Vignettes &amp; Functions are Essential right now
 
 # Vignettes
 
@@ -159,7 +182,12 @@ filter(dat, letter == "A")
 
 class: center, middle
 
-# Thanks!
+# Thanks! 
+
+Contact me: emily.bovee@marquette.edu 
+Twitter: @ebovee09
+
+Contact Dr. Joshua Rosenberg: @jrose
 
 Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
     </textarea>
