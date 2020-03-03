@@ -67,7 +67,7 @@ class: inverse, center, middle
 To download a package, you must call `install.packages()`:
 
 ```{r, eval = FALSE}
-install.packages("dplyr")
+install.packages("tidyverse")
 ```
 
 You can also navigate to the Packages pane, and then click "Install", which will work the same as the line of code above. This is a way to install a package using code or part of the R Studio interface. 
@@ -81,7 +81,7 @@ Usually, writing code is a bit quicker, but using the interface can be very usef
 *After* the package is installed, it must be loaded into your R Studio session using `library()`:
 
 ```{r}
-library(dplyr)
+library(tidyverse)
 ```
 
 We only have to install a package once, but to use it, we have to load it each time we start a new R session.
