@@ -4,7 +4,7 @@
     <title>Intro to R</title>
     <meta charset="utf-8" />
     <meta name="author" content="Emily Bovee, PhD &amp; Joshua Rosenberg, PhD" />
-    <meta name="date" content="2020-03-03" />
+    <meta name="date" content="2020-03-04" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
@@ -17,7 +17,7 @@ class: center, middle, inverse, title-slide
 # Intro to R
 ### Emily Bovee, PhD &amp; Joshua Rosenberg, PhD
 ### Marquette University and University of Tennessee, Knoxville
-### 2020-03-03
+### 2020-03-04
 
 ---
 
@@ -48,7 +48,8 @@ class: inverse, center, middle
 
 # Agenda
 
-1. Getting Started with Packages
+1. Getting Started with RStudio
+1. Packages
 1. Loading data
 1. Processing data
 1. Modeling data 
@@ -56,9 +57,73 @@ class: inverse, center, middle
 1. Questions
 
 ---
+
+
 class: inverse, center, middle
 
-# Section 1: Getting Started with Packages
+# Section 1: Getting Started with RStudio
+
+---
+
+# Why learn R?
+
+* It is capable of carrying out basic and complex statistical analyses
+* It is able to work with data small (*n* = 30!) and large (*n* = 100,000+) efficiently
+* It is a programming language and so is quite flexible
+* There is a great, inclusive community of users and developers (and teachers)
+* It is cross-platform, open-source, and freely-available
+
+---
+
+# Where to begin
+
+* R is the engine
+
+* RStudio is the steering wheel &amp; the gas pedal
+
+* Can't get anywhere without the engine, but we never interact with the engine directly
+
+* R = language ; RStudio = Integrated Development Environment (IDE)
+
+---
+# Code with me:
+
+Open R Studio cloud
+
+---
+# IN PROGRESS What's what in RStudio
+
+  - Where data lives
+  - Where code lives
+  - Need to save code files
+  - What are the unique factors of working in a cloud computing environment
+  
+&lt; Visualization of what goes where
+&lt; something like this http://www.sthda.com/english/wiki/r-basics-quick-and-easy
+
+---
+
+# IN PROGRESS Quick guide to notation in R
+
+* &lt;- is the assignment operator. It means "save as"
+** example: 
+
+* %&gt;% is the "pipe" operator. It means "then"
+
+
+
+---
+
+#IN PROGRESS where things are in RStudio
+
+  
+---
+
+#IN PROGRESS - 
+
+---
+class: inverse, center, middle
+# Section 2: Packages
 
 ---
 
@@ -103,20 +168,6 @@ We only have to install a package once, but to use it, we have to load it each t
 &gt; A package is a like a book, a library is like a library; you use library() to check a package out of the library
 &gt; - Hadley Wickham, Chief Scientist, R Studio
 
-
-########
-########
-########
-########
-
-##########CONSTRUCTION ZONE
-
-########
-########
-########
-########
-
-##########Maybe delete this - decide if Vignettes &amp; Functions are Essential right now
 
 # Vignettes
 
@@ -168,15 +219,71 @@ filter(dat, letter == "A")
 ```
 
 ---
+class: inverse, center, middle
+
+# Section 3: Loading Data
+
+---
+# Data in 
 
 
 
+######IN PROGRESS 
+#IDEAS 
+
+#basics of functions
+  - Assignment operator
+  - arguments
+  - functions
+  - check out data types
+  
+#Package fundamentals: my favorite packages &amp; my workflow
+  #High level overview: 
+      - tidyverse for data cleaning
+      - skimr to check out the data
+      - 
+      
+  #Example of an end-to-end data analysis I did in R (maybe at work)
+    - what packages I used
+    - how I got from point A to point B
 
 
+---
+class: inverse, center, middle
 
+# Section 4: Processing Data
 
+---
+#Task: Check out the data
+  str(data) gives us an overview of the types of all of the data columns at once
 
+Try typing this code:
 
+```
+## function (..., list = character(), package = NULL, lib.loc = NULL, 
+##     verbose = getOption("verbose"), envir = .GlobalEnv, overwrite = TRUE)
+```
+
+---
+#Task: Variable Renaming
+
+---
+#Task: Mutating
+
+---
+#Task 
+
+---
+class: inverse, center, middle
+
+# Section 5: Analyzing Data
+
+---
+# IN PROGRESS Task: Correlations
+
+---
+
+#IN PROGRESS
 
 ---
 
@@ -187,7 +294,7 @@ class: center, middle
 Contact me: emily.bovee@marquette.edu 
 Twitter: @ebovee09
 
-Contact Dr. Joshua Rosenberg: @jrose
+Contact Dr. Joshua Rosenberg: @jrosenberg6432
 
 Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
     </textarea>

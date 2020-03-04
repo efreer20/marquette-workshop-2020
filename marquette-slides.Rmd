@@ -46,10 +46,10 @@ class: inverse, center, middle
 # Agenda
 
 1. Getting Started with RStudio
-1. Packages
+1. Packages and Functions
 1. Loading data
 1. Processing data
-1. Modeling data 
+1. Analyzing data 
 1. Learning and doing more with R
 1. Questions
 
@@ -65,9 +65,13 @@ class: inverse, center, middle
 # Why learn R?
 
 * It is capable of carrying out basic and complex statistical analyses
+
 * It is able to work with data small (*n* = 30!) and large (*n* = 100,000+) efficiently
+
 * It is a programming language and so is quite flexible
+
 * There is a great, inclusive community of users and developers (and teachers)
+
 * It is cross-platform, open-source, and freely-available
 
 ---
@@ -83,18 +87,64 @@ class: inverse, center, middle
 * R = language ; RStudio = Integrated Development Environment (IDE)
 
 ---
-# What's what in RStudio
+# Code with me:
 
+Open R Studio cloud
+
+---
+# IN PROGRESS What's what in RStudio
+
+  - Where data lives
+  - Where code lives
+  - Need to save code files
+  - What are the unique factors of working in a cloud computing environment
+  
 < Visualization of what goes where
 < something like this http://www.sthda.com/english/wiki/r-basics-quick-and-easy
 
 ---
-class: inverse, center, middle
+# Quick guide to notation in R
 
-# Section 2: Packages
+* <- is the assignment operator. It means "save as"
+
+* %>% is the "pipe" operator. It means "then"
+
+* # is the comment operator. It means "ignore this"
+
+* () are how we give sub-commands to R. We might give R a command and then use () to give more specific instructions.
+---
+# Notation: <-
+Using the assignment operator, we can save a changed dataset
+```{r}
+data <- data
+
+```
 
 ---
+# Notation: %>% 
 
+```{r}
+```
+
+---
+# Notation: #
+ 
+```{r}
+```
+---
+# Notation: Putting it all together
+<- 
+%>% 
+#
+()
+```{r}
+#Some example that incorporates all symbols
+```
+---
+class: inverse, center, middle
+# Section 2: Packages and Functions
+
+---
 # Packages
 
 "Packages" are shareable collections of R code that provide functions (i.e., a command to perform a specific task), data and documentation,. Packages increase the functionality of R by improving and expanding on base R (basic R functions). 
@@ -107,8 +157,7 @@ include_graphics("pkg_example_screenshot.jpg")
 ```
 
 ---
-
-### Installing and Loading Packages
+# Installing and Loading Packages
 
 To download a package, you must call `install.packages()`:
 
@@ -124,7 +173,6 @@ include_graphics("install_pkgs.jpg")
 Usually, writing code is a bit quicker, but using the interface can be very useful and complimentary to use of code. 
 
 ---
-
 # Using packages
 
 *After* the package is installed, it must be loaded into your R Studio session using `library()`:
@@ -138,52 +186,7 @@ We only have to install a package once, but to use it, we have to load it each t
 > A package is a like a book, a library is like a library; you use library() to check a package out of the library
 > - Hadley Wickham, Chief Scientist, R Studio
 
-
 ---
-class: inverse, center, middle
-
-# Section 3: Loading Data
-
----
-
-
-
----
-class: inverse, center, middle
-
-# Section 4: Processing Data
-
----
-
-#Task: Variable Renaming
-
-#Task: Mutating
-
-#Task 
-
-
-
----
-class: inverse, center, middle
-
-# Section 5: Modeling Data
-
----
-
-########
-########
-########
-########
-
-##########CONSTRUCTION ZONE
-
-########
-########
-########
-########
-
-##########Maybe delete this - decide if Vignettes & Functions are Essential right now
-
 # Vignettes
 
 Vignettes are long-form documentation (and tutorials) that can provide a helpful introduction to a package.
@@ -221,18 +224,105 @@ filter(dat, letter == "A")
 ```
 
 ---
+class: inverse, center, middle
+
+# Section 3: Loading Data
+
+---
+# Where does my data "live"?
+
+* Need to tell R where to look for your data
+
+* This is called a Working Directory
+
+* We can specify the working directory with our mouse
+
+* We can also specify the working directory with code
+
+* For now, it makes sense to store your data in the same place as your code
+---
 
 
 
+######IN PROGRESS 
+#IDEAS 
 
-
-
-
-
+#basics of functions
+  - Assignment operator
+  - arguments
+  - functions
+  - check out data types
+  
+#Package fundamentals: my favorite packages & my workflow
+  #High level overview: 
+      - tidyverse for data cleaning
+      - skimr to check out the data
+      - 
+      
+  #Example of an end-to-end data analysis I did in R (maybe at work)
+    - what packages I used
+    - how I got from point A to point B
 
 
 ---
+class: inverse, center, middle
 
+# Section 4: Processing Data
+
+---
+#Task: Check out the data
+  str(data) gives us an overview of the types of all of the data columns at once
+
+Try typing this code:
+```{r, echo=FALSE}
+str(data)
+```
+
+---
+#Task: Variable Renaming
+
+---
+#Task: Mutating
+
+---
+#Task: Saving out my processed dataset (if needed)
+
+---
+class: inverse, center, middle
+
+# Section 5: Analyzing Data
+
+---
+# IN PROGRESS Task: Correlations
+
+---
+
+#IN PROGRESS Task: Linear Regression
+
+---
+class: inverse, center, middle
+
+# Section 6: Learning and doing more with R
+
+---
+# Resources
+  - [Doing data science with R](https://r4ds.had.co.nz/) by Wickham and
+    Grolemund (2017)
+  - [Big magic with R: Creating learning beyond
+    fear](https://speakerdeck.com/apreshill/big-magic-with-r-creative-learning-beyond-fear)
+    by Hill (2017)
+  - [Data science in education](https://github.com/data-edu/data-science-in-education)
+---
+# Courses
+  - [\#r4ds](https://medium.com/@kierisi/r4ds-the-next-iteration-d51e0a1b0b82)
+    (see a talk at rstudio::conf()
+    [here](https://resources.rstudio.com/rstudio-conf-2019/r4ds-online-learning-community-improvements-to-self-taught-data-science-and-the-critical-need-for-diversity-equity-and-inclusion-in-data-science-education)
+    by Maegan (2019))
+  - [Data science for social scientists](http://datascience.tntlab.org/) by
+    Landers (2019)
+  - [University of Oregon Data Science Specialization for the College of
+    Education](https://github.com/uo-datasci-specialization) by Anderson (2019)
+---
 class: center, middle
 
 # Thanks! 
@@ -240,6 +330,8 @@ class: center, middle
 Contact me: emily.bovee@marquette.edu 
 Twitter: @ebovee09
 
-Contact Dr. Joshua Rosenberg: @jrose
+Contact Dr. Joshua Rosenberg: @jrosenberg6432
 
 Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
+
+The repository for this workshop is [here](https://github.com/jrosen48/https://github.com/emilybovee/marquette-workshop-2020).

@@ -7,6 +7,7 @@
 library(MASS)
 library(tidyverse)
 library(tidylog)
+library(skimr)
 
 #---------------------------------
 #Create two correlated variables
@@ -36,22 +37,46 @@ cov(transformed_vars); cor(transformed_vars)
 #Save it as a dataframe
 transformed_vars <- as.data.frame(transformed_vars)
 
+#---------------------------------
+#Create other variables for analysis
+#---------------------------------
 
 #Create a variable for student ID & merge it in
 
-data <- mutate(transformed_vars, 
-               StudentID = sample(1:888,replace = FALSE))
+set.seed(62020)
 
-#Create a variable for tutoring
-  #this throws an error
-data <- mutate(data,
-               tutoring = sample(0:1, replace = TRUE))
+data <- transformed_vars %>% 
+          mutate(StudentID = sample(1:888,replace = FALSE))
+
+#Create a variable for tutoring, dichotomous, randomly sampling 0 and 1
+
+data <- data %>% 
+          mutate(tutoring = sample(c(0,1), replace = TRUE, size = 888))
+
+#Create a variable for # times visited advising in fall 
+
+data <- data %>% 
+          mutate(fall_adv = sample(c(1:8), replace = TRUE, size = 888))
 
 
+#Create variable for # times visited advising in spring 
+data <- data %>% 
+          mutate(spr_adv = sample(c(1:8), replace = TRUE, size = 888))
+
+#Add a text data variable
 
 
+#Reshuffle the dataset so that student ID is first
 
+data <- data %>% 
+  select(StudentID, everything())
 
+#Rename the decimal variables
+
+data <- data %>% 
+  rename(new = V1,
+         new = V2)
 
 #save the transformed data
-write_csv(transformed_vars, "data.csv")
+write_csv(data, "data.csv")
+
