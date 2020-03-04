@@ -33,11 +33,19 @@ cov(rawvars); cor(rawvars)
 transformed_vars <- pnorm(rawvars)
 cov(transformed_vars); cor(transformed_vars)
 
+#Save it as a dataframe
+transformed_vars <- as.data.frame(transformed_vars)
+
+
 #Create a variable for student ID & merge it in
 
+data <- mutate(transformed_vars, 
+               StudentID = sample(1:888,replace = FALSE))
 
-
-
+#Create a variable for tutoring
+  #this throws an error
+data <- mutate(data,
+               tutoring = sample(0:1, replace = TRUE))
 
 
 
@@ -46,5 +54,4 @@ cov(transformed_vars); cor(transformed_vars)
 
 
 #save the transformed data
-transformed_vars <- as.data.frame(transformed_vars)
 write_csv(transformed_vars, "data.csv")
