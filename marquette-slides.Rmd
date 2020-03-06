@@ -34,7 +34,6 @@ library(tidyverse)
 include_graphics("img/ebv.jpg")
 ```
 
-
 ---
 
 class: inverse, center, middle
@@ -75,34 +74,110 @@ class: inverse, center, middle
 * It is cross-platform, open-source, and freely-available
 
 ---
+# My teaching approach for today
 
+* *MAIN GOAL:* Get you up and running with coding in R as soon as possible
+
+- Show you what's possible in terms of data manipulation and analysis
+
+- We will NOT be spending a lot of time troubleshooting tech and software/hardware issues
+
+- Instead, we will focus on exposure to a variety of data processing tools
+
+- You will get access to the code and all files after the workshop so you can practice on your own
+
+- I will share a list of resources at the end to facilitate your learning
+
+---
+# Wait, I'm not installing the software?????
+
+  - Installing R can take 20 minutes, depending on your computing setup
+  
+  - Not everyone is using their own machine
+  
+  - Our time is valuable here today, so I want to get you off the ground with some new coding skills
+  
+  - Hopefully our work here today will motivate you to go through the installation of R later!
+  
+  - There are lots of helpful overviews about how to do install R, and one is chapter 5 of our book: www.datascienceineducation.com 
+
+- Image credit: Mine Çetinkaya-Rundel
+
+```{r, out.width = "350px", echo = FALSE, fig.align = "center"}
+include_graphics("starting.jpg")
+```
+
+
+---
 # Where to begin
 
-* R is the engine
+- R is the engine
 
-* RStudio is the steering wheel & the gas pedal
+- RStudio is the steering wheel & the gas pedal
 
-* Can't get anywhere without the engine, but we never interact with the engine directly
+- Can't get anywhere without the engine, but we never interact with the engine directly
 
-* R = language ; RStudio = Integrated Development Environment (IDE)
+- R = language ; RStudio = Integrated Development Environment (IDE)
 
 ---
 # Code with me:
 
 Open R Studio cloud
 
----
-# IN PROGRESS What's what in RStudio
+##########Need to add more specific instructions here
 
-  - Where data lives
-  - Where code lives
+
+######### for the next sections, need to add visuals of the RStudio panes
+
+---
+# Hi, RStudio: Four Panes
+
+  - When you open RStudio, you will see four panes. These are for:
+    - Source
+    - Console
+    - Environment
+    - Files
+
+---
+# Hi, RStudio: Data & the Environment
+
+  - Data can live:
+      - in a folder on your computer (e.g. Desktop)
+      - on the cloud (e.g. Google Drive)
+      - on the internet (e.g. a dataset from the government that will update without any input from you)
+      
+---
+# Hi, RStudio: Data & the Environment
+    
+  - Interacting with data in R:
+  - We need to first tell R where to look for the data
+  - Once we have done that, the data will be loaded into our Environment
+  - You can load data into your Working Environment to manipulate it and interact with it, but your original data remains untouched.
+
+---
+# Hi, RStudio: Data & the Environment
+    
+  -  Try loading some data into the working environment.
+
+---
+# Hi, RStudio: Source (Code)
+  - The coding pane is at the top left
   - Need to save code files
+ 
   - What are the unique factors of working in a cloud computing environment
-  
-< Visualization of what goes where
-< something like this http://www.sthda.com/english/wiki/r-basics-quick-and-easy
 
 ---
+# Hi, RStudio: Files
+
+
+---
+# Hi, RStudio: Console
+
+* As we code, the Console keeps a running log of what we've done.
+ - The Console is at the bottom left, and 
+  - Can also code in the Console, but that is generally not good practice
+---
+
 # Quick guide to notation in R
 
 * <- is the assignment operator. It means "save as"
@@ -123,13 +198,20 @@ data <- data
 ---
 # Notation: %>% 
 
-```{r}
-```
+- %>% means Then
+- It comes from a set of packages called the Tidyverse (not built in to R)
+- It is handy for stringing multiple commands together
+
+
 
 ---
 # Notation: #
  
+When we type # , we tell R to ignore everything that follows
+
 ```{r}
+
+
 ```
 ---
 # Notation: Putting it all together
@@ -137,9 +219,24 @@ data <- data
 %>% 
 #
 ()
-```{r}
-#Some example that incorporates all symbols
+
+```{r, eval = FALSE}
+#Sample code:
+averageGradeData <- data %>%   #Take grade data called "data" and save it as "averageGradeData"
+ group_by(Last, course_sem) %>%  #Then, group by course and semester
+  summarize(avgGrade = mean(`Grd Pt/Unt`, na.rm = TRUE)) %>% 
+                  #Then, create a new column for 
+                  #"average grade" and name it avgGrade
+                  #in this new column, take the average of all the grades (within a
+                  #course/semester)
+  view #then show me the result
 ```
+---
+# Code with me: Putting it all together
+
+####### Some lovely example that synthesizes everything using the practice data
+---
+
 ---
 class: inverse, center, middle
 # Section 2: Packages and Functions
@@ -210,6 +307,9 @@ These are also available through CRAN (i.e., https://cran.r-project.org/web/pack
 
 If you know the specific function that you want to look up, you can run this in the R Studio console:
 
+- Here, we use the double colon `::` to indicate that we want to use the `filter` function from within the `dplyr` package.
+  - The format is `?package::function`
+
 ```{r, eval = FALSE}
 ?dplyr::filter
 ```
@@ -217,9 +317,9 @@ If you know the specific function that you want to look up, you can run this in 
 Once you know what you want to do with the function, you can run it in your code:
 
 ```{r}
-dat <- # example data frame
+dat <- # take everything I do below and save it as an object "dat" 
   tibble(letter = c("A", "A", "A", "B", "B"),
-         number = c(1L, 2L, 3L, 4L, 5L))
+         number = c(1L, 2L, 3L, 4L, 5L)) #creates a tibble format of data
 filter(dat, letter == "A")
 ```
 
@@ -227,6 +327,18 @@ filter(dat, letter == "A")
 class: inverse, center, middle
 
 # Section 3: Loading Data
+
+---
+
+# Data processing with the *tidyverse*
+
+- I use the `tidyverse` packages to do data science tasks
+
+- For these packages to work, our data needs to be in the format of a *tibble*
+
+- A *tibble* is a data frame, but with some tighter rules.
+
+- For now, it's important to understand that however you read your data in - from a spreadsheet, from a Google sheet, or from the internet - you can transform it into a *tibble* and can do fun data processing and analysis tasks after that
 
 ---
 # Where does my data "live"?
@@ -240,29 +352,33 @@ class: inverse, center, middle
 * We can also specify the working directory with code
 
 * For now, it makes sense to store your data in the same place as your code
+
 ---
+# Code with me: Working directory
 
-
-
+---
 ######IN PROGRESS 
-#IDEAS 
 
+---
 #basics of functions
-  - Assignment operator
   - arguments
   - functions
   - check out data types
   
-#Package fundamentals: my favorite packages & my workflow
-  #High level overview: 
+---  
+# Package fundamentals: my favorite packages & my workflow
+
+ #High level overview: 
       - tidyverse for data cleaning
       - skimr to check out the data
-      - 
-      
-  #Example of an end-to-end data analysis I did in R (maybe at work)
+
+---      
+# Example of an end-to-end data analysis I did in R (maybe at work)
+
     - what packages I used
     - how I got from point A to point B
-
+          - Possibilities: Average Grade.R
+          - Graduation Rate Script - September
 
 ---
 class: inverse, center, middle
@@ -270,6 +386,19 @@ class: inverse, center, middle
 # Section 4: Processing Data
 
 ---
+
+# Some data processing basics
+
+- Always use the assignment operator <- to save a new version of the object
+    - Otherwise, you will not maintain your data processing work
+
+- Remember that you are not changing the file on your computer (or on the cloud), so it is very important to save your code file
+
+- Can save the processed data file when you are done
+
+- Everything is reversible, so try stuff out!
+---
+
 #Task: Check out the data
   str(data) gives us an overview of the types of all of the data columns at once
 
@@ -281,11 +410,70 @@ str(data)
 ---
 #Task: Variable Renaming
 
+- To rename a variable, we use "rename" from the `dplyr` package
+  - `dplyr` is part of the `tidyverse` group of packages
+  
+- The format for the rename function is 
+  - rename(new = old)
+  - Remember that we can learn more about it by typing 
+```{r, eval = FALSE}
+?dplyr::rename
+```
+
+```{r, eval = FALSE}
+#Sample code
+
+classof2016 <- classof2016 %>% 
+  rename("First" = "First Name",
+         "Last" = "Last Name")
+```
+
 ---
 #Task: Mutating
 
 ---
-#Task: Saving out my processed dataset (if needed)
+#Task: Recoding
+
+
+---
+#
+
+---
+#Task: Selecting
+
+---
+#Task: Filtering
+
+---
+#Task: Move a variable to the front 
+- We can do this with the `select` function
+
+- The below sample code comes right from the *documentation* for `select`
+
+- Remember that you can access the documentation for a function at any time by typing a question mark into your console like this
+ `?dplyr::rename`
+ 
+
+
+```{r, eval = FALSE}
+# Move Species variable to the front
+select(iris, Species, everything())
+
+```
+---
+# Code with me: Move a variable to the front
+ #### insert instructions here about how to move a variable to the front in our practice dataset 
+ 
+ 
+ #### also have students access help documentation
+
+
+---
+
+
+#Task: Saving out my processed dataset
+
+- For this, we can use the readr function from within the tidyverse
 
 ---
 class: inverse, center, middle
