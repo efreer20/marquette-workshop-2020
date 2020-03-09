@@ -74,8 +74,8 @@ data <- data %>%
 #Rename the decimal variables
 
 data <- data %>% 
-  rename(new = V1,
-         new = V2)
+  rename(int = V1,
+         expect = V2)
 
 #save the transformed data
 write_csv(data, "data.csv")

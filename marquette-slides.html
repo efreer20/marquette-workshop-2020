@@ -4,7 +4,7 @@
     <title>Intro to R</title>
     <meta charset="utf-8" />
     <meta name="author" content="Emily Bovee, PhD &amp; Joshua Rosenberg, PhD" />
-    <meta name="date" content="2020-03-06" />
+    <meta name="date" content="2020-03-08" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
@@ -17,7 +17,7 @@ class: center, middle, inverse, title-slide
 # Intro to R
 ### Emily Bovee, PhD &amp; Joshua Rosenberg, PhD
 ### Marquette University and University of Tennessee, Knoxville
-### 2020-03-06
+### 2020-03-08
 
 ---
 
@@ -48,7 +48,7 @@ class: inverse, center, middle
 # Agenda
 
 1. Getting Started with RStudio
-1. Packages and Functions
+1. Vignettes and Functions
 1. Loading data
 1. Processing data
 1. Analyzing data 
@@ -107,8 +107,6 @@ class: inverse, center, middle
 - Image credit: Mine Çetinkaya-Rundel
 
 &lt;img src="starting.jpg" width="350px" style="display: block; margin: auto;" /&gt;
-
-
 ---
 # Where to begin
 
@@ -123,12 +121,13 @@ class: inverse, center, middle
 ---
 # Code with me:
 
-Open R Studio cloud
+- Our task: Open R Studio cloud
 
-##########Need to add more specific instructions here
+- Visit this URL https://rstudio.cloud/
 
+- Sign up
 
-######### for the next sections, need to add visuals of the RStudio panes
+- Join our shared workspace at this link: https://rstudio.cloud/project/1022502
 
 ---
 # Hi, RStudio: Four Panes
@@ -138,27 +137,29 @@ Open R Studio cloud
     - Console
     - Environment
     - Files
-
+    
+&lt;img src="rstudio_annotated.jpg" width="600px" style="display: block; margin: auto;" /&gt;
 ---
 # Hi, RStudio: Data &amp; the Environment
 
   - Data can live:
+  
       - in a folder on your computer (e.g. Desktop)
+      
       - on the cloud (e.g. Google Drive)
+      
       - on the internet (e.g. a dataset from the government that will update without any input from you)
       
 ---
 # Hi, RStudio: Data &amp; the Environment
     
   - Interacting with data in R:
-  - We need to first tell R where to look for the data
-  - Once we have done that, the data will be loaded into our Environment
-  - You can load data into your Working Environment to manipulate it and interact with it, but your original data remains untouched.
-
----
-# Hi, RStudio: Data &amp; the Environment
     
-  -  Try loading some data into the working environment.
+    - We need to first tell R where to look for the data
+    
+    - Once we have done that, the data will be loaded into our Environment
+  
+    - You can load data into your Working Environment to manipulate it and interact with it, but your original data remains untouched.
 
 ---
 # Hi, RStudio: Source (Code)
@@ -177,73 +178,11 @@ Open R Studio cloud
 * As we code, the Console keeps a running log of what we've done.
  - The Console is at the bottom left, and 
   - Can also code in the Console, but that is generally not good practice
----
-
-# Quick guide to notation in R
-
-* &lt;- is the assignment operator. It means "save as"
-
-* %&gt;% is the "pipe" operator. It means "then"
-
-* # is the comment operator. It means "ignore this"
-
-* () are how we give sub-commands to R. We might give R a command and then use () to give more specific instructions.
----
-# Notation: &lt;-
-Using the assignment operator, we can save a changed dataset
-
-```r
-data &lt;- data
-```
-
----
-# Notation: %&gt;% 
-
-- %&gt;% means Then
-- It comes from a set of packages called the Tidyverse (not built in to R)
-- It is handy for stringing multiple commands together
-
-
-
----
-# Notation: #
- 
-When we type # , we tell R to ignore everything that follows
-
-
----
-# Notation: Putting it all together
-&lt;- 
-%&gt;% 
-#
-()
-
-
-```r
-#Sample code:
-averageGradeData &lt;- data %&gt;%   #Take grade data called "data" and save it as "averageGradeData"
- group_by(Last, course_sem) %&gt;%  #Then, group by course and semester
-  summarize(avgGrade = mean(`Grd Pt/Unt`, na.rm = TRUE)) %&gt;% 
-                  #Then, create a new column for 
-                  #"average grade" and name it avgGrade
-                  #in this new column, take the average of all the grades (within a
-                  #course/semester)
-  view #then show me the result
-```
----
-# Code with me: Putting it all together
-
-####### Some lovely example that synthesizes everything using the practice data
----
-
----
-class: inverse, center, middle
-# Section 2: Packages and Functions
 
 ---
 # Packages
 
-"Packages" are shareable collections of R code that provide functions (i.e., a command to perform a specific task), data and documentation,. Packages increase the functionality of R by improving and expanding on base R (basic R functions). 
+"Packages" are shareable collections of R code that provide functions (i.e., a command to perform a specific task), data and documentation. Packages increase the functionality of R by improving and expanding on base R (basic R functions). 
 
 ---
 
@@ -280,6 +219,66 @@ We only have to install a package once, but to use it, we have to load it each t
 &gt; A package is a like a book, a library is like a library; you use library() to check a package out of the library
 &gt; - Hadley Wickham, Chief Scientist, R Studio
 
+# Quick guide to notation in R
+
+* &lt;- is the assignment operator. It means "save as"
+
+* %&gt;% is the "pipe" operator. It means "then"
+
+* # is the comment operator. It means "ignore this"
+
+* () are how we give sub-commands to R. We might give R a command and then use () to give more specific instructions.
+
+---
+# Notation: &lt;-
+Using the assignment operator, we can save a changed dataset
+
+```r
+data &lt;- data
+```
+
+---
+# Notation: %&gt;% 
+
+- %&gt;% means Then
+- It comes from a set of packages called the Tidyverse (not built in to R)
+- It is handy for stringing multiple commands together
+
+
+
+---
+# Notation: #
+ 
+When we type # , we tell R to ignore everything that follows
+
+
+---
+# Notation: Putting it all together
+&lt;- 
+
+%&gt;% 
+
+#
+
+()
+
+
+```r
+#Sample code:
+averageGradeData &lt;- data %&gt;%   #Take grade data called "data" 
+                                #and save it as "averageGradeData"
+ group_by(Last, course_sem) %&gt;%  #Then, group by course and semester
+  summarize(avgGrade = mean(`Grd Pt/Unt`, na.rm = TRUE)) %&gt;% 
+                  #Then, create a new column for 
+                  #"average grade" and name it avgGrade
+                  #in this new column, take the average of all the 
+                  #grades (within a course/semester)
+  view #then show me the result
+```
+---
+class: inverse, center, middle
+# Section 2: Vignettes and Functions
+
 ---
 # Vignettes
 
@@ -307,7 +306,7 @@ These are also available through CRAN (i.e., https://cran.r-project.org/web/pack
 If you know the specific function that you want to look up, you can run this in the R Studio console:
 
 - Here, we use the double colon `::` to indicate that we want to use the `filter` function from within the `dplyr` package.
-  - The format is ?package::function
+  - The format is `?package::function`
 
 
 ```r
@@ -340,7 +339,7 @@ class: inverse, center, middle
 
 ---
 
-# Data processing with the `tidyverse`
+# Data processing with the *tidyverse*
 
 - I use the `tidyverse` packages to do data science tasks
 
@@ -364,10 +363,15 @@ class: inverse, center, middle
 * For now, it makes sense to store your data in the same place as your code
 
 ---
-# Code with me: Working directory
+# Code with me: set Working directory
 
 ---
-######IN PROGRESS 
+# Code with me: load data
+
+
+
+
+#####IN PROGRESS 
 
 ---
 #basics of functions
@@ -381,8 +385,7 @@ class: inverse, center, middle
  #High level overview: 
       - tidyverse for data cleaning
       - skimr to check out the data
-      - 
-      
+
 ---      
 # Example of an end-to-end data analysis I did in R (maybe at work)
 
@@ -416,8 +419,8 @@ class: inverse, center, middle
 Try typing this code:
 
 ```
-## function (..., list = character(), package = NULL, lib.loc = NULL, 
-##     verbose = getOption("verbose"), envir = .GlobalEnv, overwrite = TRUE)
+## function (..., list = character(), package = NULL, lib.loc = NULL, verbose = getOption("verbose"), 
+##     envir = .GlobalEnv, overwrite = TRUE)
 ```
 
 ---
@@ -425,6 +428,14 @@ Try typing this code:
 
 - To rename a variable, we use "rename" from the `dplyr` package
   - `dplyr` is part of the `tidyverse` group of packages
+  
+- The format for the rename function is 
+  - rename(new = old)
+  - Remember that we can learn more about it by typing 
+
+```r
+?dplyr::rename
+```
 
 
 ```r
@@ -437,6 +448,13 @@ classof2016 &lt;- classof2016 %&gt;%
 
 ---
 #Task: Mutating
+
+---
+#Task: Recoding
+
+
+---
+#
 
 ---
 #Task: Selecting

@@ -45,7 +45,7 @@ class: inverse, center, middle
 # Agenda
 
 1. Getting Started with RStudio
-1. Packages and Functions
+1. Vignettes and Functions
 1. Loading data
 1. Processing data
 1. Analyzing data 
@@ -106,8 +106,6 @@ class: inverse, center, middle
 ```{r, out.width = "350px", echo = FALSE, fig.align = "center"}
 include_graphics("starting.jpg")
 ```
-
-
 ---
 # Where to begin
 
@@ -122,12 +120,13 @@ include_graphics("starting.jpg")
 ---
 # Code with me:
 
-Open R Studio cloud
+- Our task: Open R Studio cloud
 
-##########Need to add more specific instructions here
+- Visit this URL https://rstudio.cloud/
 
+- Sign up
 
-######### for the next sections, need to add visuals of the RStudio panes
+- Join our shared workspace at this link: https://rstudio.cloud/project/1022502
 
 ---
 # Hi, RStudio: Four Panes
@@ -137,27 +136,31 @@ Open R Studio cloud
     - Console
     - Environment
     - Files
-
+    
+```{r, out.width = "600px", echo = FALSE, fig.align = "center"}
+include_graphics("rstudio_annotated.jpg")
+```
 ---
 # Hi, RStudio: Data & the Environment
 
   - Data can live:
+  
       - in a folder on your computer (e.g. Desktop)
+      
       - on the cloud (e.g. Google Drive)
+      
       - on the internet (e.g. a dataset from the government that will update without any input from you)
       
 ---
 # Hi, RStudio: Data & the Environment
     
   - Interacting with data in R:
-  - We need to first tell R where to look for the data
-  - Once we have done that, the data will be loaded into our Environment
-  - You can load data into your Working Environment to manipulate it and interact with it, but your original data remains untouched.
-
----
-# Hi, RStudio: Data & the Environment
     
-  -  Try loading some data into the working environment.
+    - We need to first tell R where to look for the data
+    
+    - Once we have done that, the data will be loaded into our Environment
+  
+    - You can load data into your Working Environment to manipulate it and interact with it, but your original data remains untouched.
 
 ---
 # Hi, RStudio: Source (Code)
@@ -176,75 +179,11 @@ Open R Studio cloud
 * As we code, the Console keeps a running log of what we've done.
  - The Console is at the bottom left, and 
   - Can also code in the Console, but that is generally not good practice
----
-
-# Quick guide to notation in R
-
-* <- is the assignment operator. It means "save as"
-
-* %>% is the "pipe" operator. It means "then"
-
-* # is the comment operator. It means "ignore this"
-
-* () are how we give sub-commands to R. We might give R a command and then use () to give more specific instructions.
----
-# Notation: <-
-Using the assignment operator, we can save a changed dataset
-```{r}
-data <- data
-
-```
-
----
-# Notation: %>% 
-
-- %>% means Then
-- It comes from a set of packages called the Tidyverse (not built in to R)
-- It is handy for stringing multiple commands together
-
-
-
----
-# Notation: #
- 
-When we type # , we tell R to ignore everything that follows
-
-```{r}
-
-
-```
----
-# Notation: Putting it all together
-<- 
-%>% 
-#
-()
-
-```{r, eval = FALSE}
-#Sample code:
-averageGradeData <- data %>%   #Take grade data called "data" and save it as "averageGradeData"
- group_by(Last, course_sem) %>%  #Then, group by course and semester
-  summarize(avgGrade = mean(`Grd Pt/Unt`, na.rm = TRUE)) %>% 
-                  #Then, create a new column for 
-                  #"average grade" and name it avgGrade
-                  #in this new column, take the average of all the grades (within a
-                  #course/semester)
-  view #then show me the result
-```
----
-# Code with me: Putting it all together
-
-####### Some lovely example that synthesizes everything using the practice data
----
-
----
-class: inverse, center, middle
-# Section 2: Packages and Functions
 
 ---
 # Packages
 
-"Packages" are shareable collections of R code that provide functions (i.e., a command to perform a specific task), data and documentation,. Packages increase the functionality of R by improving and expanding on base R (basic R functions). 
+"Packages" are shareable collections of R code that provide functions (i.e., a command to perform a specific task), data and documentation. Packages increase the functionality of R by improving and expanding on base R (basic R functions). 
 
 ---
 
@@ -282,6 +221,68 @@ We only have to install a package once, but to use it, we have to load it each t
 
 > A package is a like a book, a library is like a library; you use library() to check a package out of the library
 > - Hadley Wickham, Chief Scientist, R Studio
+
+# Quick guide to notation in R
+
+* <- is the assignment operator. It means "save as"
+
+* %>% is the "pipe" operator. It means "then"
+
+* # is the comment operator. It means "ignore this"
+
+* () are how we give sub-commands to R. We might give R a command and then use () to give more specific instructions.
+
+---
+# Notation: <-
+Using the assignment operator, we can save a changed dataset
+```{r}
+data <- data
+
+```
+
+---
+# Notation: %>% 
+
+- %>% means Then
+- It comes from a set of packages called the Tidyverse (not built in to R)
+- It is handy for stringing multiple commands together
+
+
+
+---
+# Notation: #
+ 
+When we type # , we tell R to ignore everything that follows
+
+```{r}
+
+
+```
+---
+# Notation: Putting it all together
+<- 
+
+%>% 
+
+#
+
+()
+
+```{r, eval = FALSE}
+#Sample code:
+averageGradeData <- data %>%   #Take grade data called "data" 
+                                #and save it as "averageGradeData"
+ group_by(Last, course_sem) %>%  #Then, group by course and semester
+  summarize(avgGrade = mean(`Grd Pt/Unt`, na.rm = TRUE)) %>% 
+                  #Then, create a new column for 
+                  #"average grade" and name it avgGrade
+                  #in this new column, take the average of all the 
+                  #grades (within a course/semester)
+  view #then show me the result
+```
+---
+class: inverse, center, middle
+# Section 2: Vignettes and Functions
 
 ---
 # Vignettes
@@ -354,10 +355,15 @@ class: inverse, center, middle
 * For now, it makes sense to store your data in the same place as your code
 
 ---
-# Code with me: Working directory
+# Code with me: set Working directory
 
 ---
-######IN PROGRESS 
+# Code with me: load data
+
+
+
+
+#####IN PROGRESS 
 
 ---
 #basics of functions
