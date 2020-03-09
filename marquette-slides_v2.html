@@ -4,7 +4,7 @@
     <title>Intro to R</title>
     <meta charset="utf-8" />
     <meta name="author" content="Emily Bovee, PhD &amp; Joshua Rosenberg, PhD" />
-    <meta name="date" content="2020-03-08" />
+    <meta name="date" content="2020-03-09" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
@@ -17,7 +17,7 @@ class: center, middle, inverse, title-slide
 # Intro to R
 ### Emily Bovee, PhD &amp; Joshua Rosenberg, PhD
 ### Marquette University and University of Tennessee, Knoxville
-### 2020-03-08
+### 2020-03-09
 
 ---
 
@@ -36,10 +36,9 @@ class: center, middle, inverse, title-slide
   * Data science education 
 ]
 
+&lt;img src="ebv.jpg" width="350px" style="display: block; margin: auto;" /&gt;
 
-.pull-right[
-&lt;img src="helping.jpg" width="350px" style="display: block; margin: auto auto auto 0;" /&gt;
-]
+&lt;img src="helping.jpg" width="250px" style='transform:rotate(90deg);' style="display: block; margin: auto;" /&gt;
 ---
 
 class: inverse, center, middle
@@ -130,8 +129,10 @@ class: inverse, center, middle
 
 - Sign up
 
-- Join our shared workspace at this link: https://rstudio.cloud/project/1022502
+- Join our shared workspace at the link that was emailed to you
 
+
+&lt;img src="cloud.png" width="350px" style="display: block; margin: auto;" /&gt;
 ---
 # Hi, RStudio: Four Panes
 
@@ -173,11 +174,15 @@ class: inverse, center, middle
   - There are different types of files: 
     -  .r is an R Script
     -  .Rmd is R Markdown (for including narrative with code)
-    
-  - I use both types regularly
   
   - Today, we will use a .R file (R Script)
 &lt;img src="rstudio_annotated.jpg" width="600px" style="display: block; margin: auto;" /&gt;
+---
+# Code with me: Open an R Script
+
+- In the Files section (bottom right), click the file called
+*code-with-me.r*
+
 ---
 # Hi, RStudio: Files
 
@@ -191,6 +196,18 @@ class: inverse, center, middle
 - Can also code in the Console, but that is generally not good practice because it disappears as soon as you close R
 
 &lt;img src="rstudio_annotated.jpg" width="600px" style="display: block; margin: auto;" /&gt;
+---
+# Running Code
+
+- To run code in R, you can
+
+  - Highlight the line and click the Run button at the top right
+  
+  - Put your cursor on the line that you want to run, then hold Control and tap Enter 
+  
+    - On a Mac: Hold Command and tap Enter
+
+&lt;img src="run.jpg" width="600px" style="display: block; margin: auto;" /&gt;
 ---
 # Packages
 
@@ -266,7 +283,7 @@ library(tidyverse)
 Using the assignment operator, we can save a changed dataset
 
 ```r
-data &lt;- data
+changed_data &lt;- data()
 ```
 
 ---
@@ -284,7 +301,14 @@ When we type # , we tell R to ignore everything that follows
 
 
 ```r
-#do not run student_data &lt;- student_data %&gt;% select(var1, var2, var3)
+#do not run this... student_data &lt;- student_data %&gt;% select(var1, var2, var3)
+
+#student_data &lt;- student_data %&gt;% select(var1, var2, var3)
+
+#comments are useful for notes to self
+
+#people also use comments to exclude lines of code for now
+  #but save them for later
 ```
 ---
 #Notation: ()
@@ -404,12 +428,6 @@ class: inverse, center, middle
 - For now, it makes sense to store your data in the same place as your code
 
 ---
-# Code with me: set Working directory
-setwd()
-
-########################################Finish this with what I need to do to load the data
-
----
 # Code with me: load data
 - In your code file, run the part of the code labeled "Load Data"
 
@@ -513,7 +531,17 @@ Note that we have been checking out the data with code. You can also always view
 
 - It includes 6 variables
 
-- 
+  - Student ID number
+
+  - Interest in learning R (I like it)
+  
+  - Expectation of capability to learn R (I think I can do it)
+  
+  - Whether student attended tutoring in the past year
+  
+  - Whether student attended advising in fall semester
+  
+  - Whether student attended advising in spring semester
 
 - I generated it for this workshop, so it's not real data
 
@@ -536,22 +564,76 @@ Note that we have been checking out the data with code. You can also always view
 #Sample code
 
 classof2016 &lt;- classof2016 %&gt;% 
-  rename("First" = "First Name",
-         "Last" = "Last Name")
+  rename(First = "First Name",
+         Last = "Last Name")
 ```
 ---
 #Code with me: Variable Renaming
+
+- Let's try renaming a variable in our data
+
+
+```r
+#Without saving
+
+data %&gt;% rename(testing123 = tutoring)
+```
+
+```
+## # A tibble: 888 x 6
+##    StudentID   int expect testing123 fall_adv spr_adv
+##        &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+##  1       132 0.710 0.600           0        3       2
+##  2       388 0.282 0.334           0        3       2
+##  3       810 0.872 0.697           0        7       7
+##  4       498 0.141 0.191           1        8       1
+##  5       772 0.432 0.0666          0        7       3
+##  6       381 0.312 0.625           1        2       1
+##  7       116 0.370 0.723           1        3       6
+##  8        51 0.530 0.531           1        5       3
+##  9       458 0.925 0.978           1        8       7
+## 10       875 0.999 0.987           0        7       1
+## # ... with 878 more rows
+```
+
+```r
+  #What do you see in your console (bottom left) after running this code?
+
+#With saving
+
+data &lt;- data %&gt;% 
+        rename(tutor = tutoring)
+```
 
 ---
 #Task: Selecting
 `select()` reduces the number of *columns* of a dataset.
 
 ```r
-student_mot_vars &lt;- # save object student_mot_vars by...
-  student_responses %&gt;% # using dataframe student_responses
-  select(SCIEEFF, JOYSCIE, INTBRSCI, EPIST, INSTSCIE) # and selecting only these five variables
-student_mot_vars
+data_mot_vars &lt;- # save a new object student_mot_vars by...
+  data %&gt;% # using dataframe student_responses
+  select(int, expect) # and selecting only these two variables
+
+#Now check out the new dataset
+data_mot_vars
 ```
+
+---
+#Code with me: Selecting
+
+- Try filling out the rest of this code to select only the advising data and student ID data
+- Remember that variable names need to be separated by commas
+
+
+```r
+data_advising &lt;- 
+  data %&gt;% 
+  select(StudentID, , )
+```
+
+- How many observations (rows) are in your new dataset?
+
+- How many variables (columns) are in your new dataset?
 
 ---
 #Task: Mutating
@@ -580,6 +662,12 @@ data &lt;- data %&gt;%
 
 - Save the new dataset as *awesome*
 
+
+```r
+_____ &lt;- data %&gt;% 
+  mutate(____ = )
+```
+
 ---
 # Code with me: Mutate
 - How did it go?
@@ -598,11 +686,9 @@ colnames(awesome)
 Notice that in the code below, we do not save an object with the `&lt;-` assignment operator. The filtering will display in our viewer, but our data is unchanged. 
 
 ```r
-# data %&gt;% 
-#  # INSERT SELECT COMMANDS MAYBE
-# # INSERT MUTATE COMMANDS MAYBE  
-#   filter(student_joy_interest &gt; mean(student_joy_interest, na.rm = TRUE)) %&gt;% 
-#   head(3)
+#Filter without saving
+
+data %&gt;% filter(tutoring == 0)
 ```
 ---
 # Code with me: Filter
@@ -623,28 +709,48 @@ Notice that in the code below, we do not save an object with the `&lt;-` assignm
 select(iris, Species, everything())
 ```
 ---
-# Code with me: Move a variable to the front
- #### insert instructions here about how to move a variable to the front in our practice dataset 
- 
- 
- #### also have students access help documentation
+# Code with me: Move a variable forward
 
+- Fill in the following code with a variable you'd like to move to the front
+
+
+```r
+select(data, ______, everything())
+```
 ---
+
+#Chaining commands
+
+- We can stack commands using the %&gt;% operator
+
+
+```r
+data %&gt;%
+  mutate(motivation = (int + expect)) %&gt;% 
+  filter(tutor == 0) %&gt;% 
+  view
+```
+
+
+
+
+
+
 
 #Task: Saving out my processed dataset
 
 - For this, we can use the readr function from within the tidyverse
 
+- Using our data frame `data`, we can save it as a CSV (for example) with the following function. The first argument, `data`, is the name of the object that you want to save. The second argument, `data_after_workshop.csv`, what you want to call the saved dataset.
 
+```r
+write_csv(data, "data_after_workshop.csv")
+```
+That will save a CSV file entitled `data_after_workshop.csv` in the working directory. If you want to save it to another directory, simply add the file path to the file, i.e. `path/to/data_after_workshop.csv`. 
 
+To save a file for SPSS, load the `haven` package and use `write_sav()`. 
 
-
-
-
-
-
-
-
+There is not a function to save an Excel file, but you can save as a CSV and directly load it in Excel.
 
 ---
 class: inverse, center, middle
@@ -808,10 +914,16 @@ www.datascienceineducation.com
 
 &lt;img src="dataedu.png" width="350px" style="display: block; margin: auto;" /&gt;
 ---
+# Workshop Evaluation
 
-class: center, middle
+- Not for research purposes, but just to let Dr. Rosenberg and I know how this went
 
-# Thanks! 
+- Especially interested in feedback about the RStudio Cloud experience
+
+bit.ly/survey3920
+
+---
+# Thanks!
 
 Contact me: emily.bovee@marquette.edu 
 Twitter: @ebovee09

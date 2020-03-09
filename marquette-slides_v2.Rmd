@@ -35,7 +35,7 @@ library(tidyverse)
 include_graphics("ebv.jpg")
 ```
 
-```{r, out.width = "350px", echo = FALSE, fig.align = "left"}
+```{r, out.width = "250px", echo = FALSE, fig.align = "center", out.extra="style='transform:rotate(90deg);'"}
 include_graphics("helping.jpg")
 ```
 ---
@@ -130,8 +130,12 @@ include_graphics("starting.jpg")
 
 - Sign up
 
-- Join our shared workspace at this link: https://rstudio.cloud/project/1022502
+- Join our shared workspace at the link that was emailed to you
 
+
+```{r, out.width = "350px", echo = FALSE, fig.align = "center"}
+include_graphics("cloud.png")
+```
 ---
 # Hi, RStudio: Four Panes
 
@@ -175,13 +179,17 @@ include_graphics("rstudio_annotated.jpg")
   - There are different types of files: 
     -  .r is an R Script
     -  .Rmd is R Markdown (for including narrative with code)
-    
-  - I use both types regularly
   
   - Today, we will use a .R file (R Script)
 ```{r, out.width = "600px", echo = FALSE, fig.align = "center"}
 include_graphics("rstudio_annotated.jpg")
 ```
+---
+# Code with me: Open an R Script
+
+- In the Files section (bottom right), click the file called
+*code-with-me.r*
+
 ---
 # Hi, RStudio: Files
 
@@ -198,6 +206,20 @@ include_graphics("rstudio_annotated.jpg")
 
 ```{r, out.width = "600px", echo = FALSE, fig.align = "center"}
 include_graphics("rstudio_annotated.jpg")
+```
+---
+# Running Code
+
+- To run code in R, you can
+
+  - Highlight the line and click the Run button at the top right
+  
+  - Put your cursor on the line that you want to run, then hold Control and tap Enter 
+  
+    - On a Mac: Hold Command and tap Enter
+
+```{r, out.width = "600px", echo = FALSE, fig.align = "center"}
+include_graphics("run.jpg")
 ```
 ---
 # Packages
@@ -272,8 +294,8 @@ library(tidyverse)
 ---
 # Notation: <-
 Using the assignment operator, we can save a changed dataset
-```{r}
-data <- data
+```{r, eval=FALSE}
+changed_data <- data()
 
 ```
 
@@ -292,7 +314,14 @@ When we type # , we tell R to ignore everything that follows
 
 ```{r}
 
-#do not run student_data <- student_data %>% select(var1, var2, var3)
+#do not run this... student_data <- student_data %>% select(var1, var2, var3)
+
+#student_data <- student_data %>% select(var1, var2, var3)
+
+#comments are useful for notes to self
+
+#people also use comments to exclude lines of code for now
+  #but save them for later
 
 ```
 ---
@@ -399,12 +428,6 @@ class: inverse, center, middle
 - For now, it makes sense to store your data in the same place as your code
 
 ---
-# Code with me: set Working directory
-setwd()
-
-########################################Finish this with what I need to do to load the data
-
----
 # Code with me: load data
 - In your code file, run the part of the code labeled "Load Data"
 
@@ -458,7 +481,17 @@ Note that we have been checking out the data with code. You can also always view
 
 - It includes 6 variables
 
-- 
+  - Student ID number
+
+  - Interest in learning R (I like it)
+  
+  - Expectation of capability to learn R (I think I can do it)
+  
+  - Whether student attended tutoring in the past year
+  
+  - Whether student attended advising in fall semester
+  
+  - Whether student attended advising in spring semester
 
 - I generated it for this workshop, so it's not real data
 
@@ -479,21 +512,55 @@ Note that we have been checking out the data with code. You can also always view
 #Sample code
 
 classof2016 <- classof2016 %>% 
-  rename("First" = "First Name",
-         "Last" = "Last Name")
+  rename(First = "First Name",
+         Last = "Last Name")
 ```
 ---
 #Code with me: Variable Renaming
+
+- Let's try renaming a variable in our data
+
+```{r}
+#Without saving
+
+data %>% rename(testing123 = tutoring)
+  #What do you see in your console (bottom left) after running this code?
+
+#With saving
+
+data <- data %>% 
+        rename(tutor = tutoring)
+```
 
 ---
 #Task: Selecting
 `select()` reduces the number of *columns* of a dataset.
 ```{r, eval = FALSE}
-student_mot_vars <- # save object student_mot_vars by...
-  student_responses %>% # using dataframe student_responses
-  select(SCIEEFF, JOYSCIE, INTBRSCI, EPIST, INSTSCIE) # and selecting only these five variables
-student_mot_vars
+data_mot_vars <- # save a new object student_mot_vars by...
+  data %>% # using dataframe student_responses
+  select(int, expect) # and selecting only these two variables
+
+#Now check out the new dataset
+data_mot_vars
 ```
+
+---
+#Code with me: Selecting
+
+- Try filling out the rest of this code to select only the advising data and student ID data
+- Remember that variable names need to be separated by commas
+
+```{r, eval = FALSE}
+
+data_advising <- 
+  data %>% 
+  select(StudentID, , )
+
+```
+
+- How many observations (rows) are in your new dataset?
+
+- How many variables (columns) are in your new dataset?
 
 ---
 #Task: Mutating
@@ -521,6 +588,13 @@ data <- data %>%
 
 - Save the new dataset as *awesome*
 
+```{r, eval = FALSE}
+
+_____ <- data %>% 
+  mutate(____ = )
+
+```
+
 ---
 # Code with me: Mutate
 - How did it go?
@@ -536,12 +610,11 @@ colnames(awesome)
 `filter()` takes *logical statements* (statements that can evalute to true or false) to select a number of *rows* from a dataset.]
 
 Notice that in the code below, we do not save an object with the `<-` assignment operator. The filtering will display in our viewer, but our data is unchanged. 
-```{r}
-# data %>% 
-#  # INSERT SELECT COMMANDS MAYBE
-# # INSERT MUTATE COMMANDS MAYBE  
-#   filter(student_joy_interest > mean(student_joy_interest, na.rm = TRUE)) %>% 
-#   head(3)
+```{r,eval = FALSE}
+#Filter without saving
+
+data %>% filter(tutoring == 0)
+
 ```
 ---
 # Code with me: Filter
@@ -562,28 +635,45 @@ select(iris, Species, everything())
 
 ```
 ---
-# Code with me: Move a variable to the front
- #### insert instructions here about how to move a variable to the front in our practice dataset 
- 
- 
- #### also have students access help documentation
+# Code with me: Move a variable forward
 
+- Fill in the following code with a variable you'd like to move to the front
+
+```{r, eval = FALSE}
+select(data, ______, everything())
+```
 ---
+
+#Chaining commands
+
+- We can stack commands using the %>% operator
+
+```{r}
+data %>%
+  mutate(motivation = (int + expect)) %>% 
+  filter(tutor == 0) %>% 
+  view
+```
+
+
+
+
+
+
 
 #Task: Saving out my processed dataset
 
 - For this, we can use the readr function from within the tidyverse
 
+- Using our data frame `data`, we can save it as a CSV (for example) with the following function. The first argument, `data`, is the name of the object that you want to save. The second argument, `data_after_workshop.csv`, what you want to call the saved dataset.
+```{r, eval = FALSE}
+write_csv(data, "data_after_workshop.csv")
+```
+That will save a CSV file entitled `data_after_workshop.csv` in the working directory. If you want to save it to another directory, simply add the file path to the file, i.e. `path/to/data_after_workshop.csv`. 
 
+To save a file for SPSS, load the `haven` package and use `write_sav()`. 
 
-
-
-
-
-
-
-
-
+There is not a function to save an Excel file, but you can save as a CSV and directly load it in Excel.
 
 ---
 class: inverse, center, middle
@@ -690,13 +780,20 @@ www.datascienceineducation.com
 include_graphics("dataedu.png")
 ```
 ---
+# Workshop Evaluation
 
-class: center, middle
+- Not for research purposes, but just to let Dr. Rosenberg and I know how this went
 
-# Thanks! 
+- Especially interested in feedback about the RStudio Cloud experience
 
-Contact me: emily.bovee@marquette.edu 
-Twitter: @ebovee09
+bit.ly/survey3920
+
+---
+# Thanks!
+
+Contact me via email: emily.bovee@marquette.edu 
+
+Contact me via Twitter: @ebovee09
 
 Contact Dr. Joshua Rosenberg: @jrosenberg6432
 
